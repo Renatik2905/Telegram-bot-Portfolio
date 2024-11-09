@@ -17,6 +17,7 @@ class DB_Manager:
                             project_name TEXT NOT NULL,
                             description TEXT,
                             url TEXT,
+                            photo TEXT,
                             status_id INTEGER,
                             FOREIGN KEY(status_id) REFERENCES status(status_id)
                         )''') 
@@ -120,8 +121,7 @@ WHERE project_name=? AND user_id=?
     def delete_skill(self, project_id, skill_id):
         sql = "DELETE FROM skills WHERE skill_id = ? AND project_id = ? "
         self.__executemany(sql, [(skill_id, project_id)])
-
-
+    
 if __name__ == '__main__':
     manager = DB_Manager(DATABASE)
     manager.create_tables()
